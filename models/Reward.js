@@ -1,41 +1,15 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const rewardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  points: {
+  pointsRequired: {
     type: Number,
-    default: 0,
+    required: true,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  transactions: [
-    {
-      type: {
-        type: String,
-        enum: ['earn', 'redeem'],
-      },
-      amount: Number,
-      description: String,
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  description: String,
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Reward', rewardSchema);
